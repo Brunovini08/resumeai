@@ -6,17 +6,5 @@ import { z } from "zod"
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
   providers: [
-    Credentials({
-    async authorize(credentials: Partial<Record<string, unknown>>, request: Request): Awaitable<User | null>) | undefined {
-      const parsedCredentials = z
-        .object({ email: z.string().email(), password: z.string().min(6) })
-        .safeParse(credentials)
-
-      if(parsedCredentials.success) {
-        const { email, password } = parsedCredentials.data
-
-      }
-
-    }
-  })],
+    Credentials({})],
 });
